@@ -11,9 +11,12 @@
     "url": "git+https://github.com/danlee2/code-challenge.git"
   },
   "author": "Dan Lee",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/danlee2/code-challenge/issues"
   },
-  "homepage": "https://github.com/danlee2/code-challenge#readme"
+  "homepage": "https://github.com/danlee2/code-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
