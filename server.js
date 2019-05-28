@@ -1,15 +1,15 @@
 'use strict';
 
-// Requiring necessary npm packages
+// Require necessary npm packages
 var express = require("express");
+var bodyParser = require("body-parser");
+var session = require("express-session");
 
-// Setting up port and requiring models for syncing
+// Setting up port 
 var PORT = process.env.PORT || 8080;
 
-// Creating express app and configuring middleware needed for authentication
+// Creating express app by initializing an express server as a variable
 var app = express();
-
-// set the view engine
 
 // require our routes
 
@@ -17,3 +17,9 @@ var app = express();
 app.listen(PORT, function() {
   console.log("Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
 });
+
+var url = "https://next.json-generator.com/api/json/get/EkzBIUWNL";
+
+// getMany endpoint - using simple GET HTTP request
+
+// getSingle request - using simple GET HTTP request

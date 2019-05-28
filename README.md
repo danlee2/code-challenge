@@ -1,3 +1,5 @@
+# basic instructions
+to run app: `node server.js`
 # code-challenge
 Blank HTML store template for code challenge
 

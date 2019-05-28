@@ -1,9 +1,10 @@
 {
   "name": "code-challenge",
   "version": "1.0.0",
-  "description": "code challenge for whitebox job application",
+  "description": "Dan's code challenge for whitebox",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,13 @@
   },
   "homepage": "https://github.com/danlee2/code-challenge#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.15.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }
