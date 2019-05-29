@@ -17,7 +17,7 @@
 		</a>
 
 		<span class="s-text17">
-			Boxy T-Shirt with Roll Sleeve Detail
+			<%= detail[0].name %>
 		</span>
 	</div>
 
@@ -29,19 +29,19 @@
 					<div class="wrap-slick3-dots"></div>
 
 					<div class="slick3">
-						<div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
+						<div class="item-slick3" data-thumb="/public/images/thumb-item-01.jpg">
 							<div class="wrap-pic-w">
 								<img src="/public/images/product-detail-01.jpg" alt="IMG-PRODUCT">
 							</div>
 						</div>
 
-						<div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
+						<div class="item-slick3" data-thumb="/public/images/thumb-item-02.jpg">
 							<div class="wrap-pic-w">
 								<img src="/public/images/product-detail-02.jpg" alt="IMG-PRODUCT">
 							</div>
 						</div>
 
-						<div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
+						<div class="item-slick3" data-thumb="/public/images/thumb-item-03.jpg">
 							<div class="wrap-pic-w">
 								<img src="/public/images/product-detail-03.jpg" alt="IMG-PRODUCT">
 							</div>
@@ -52,16 +52,16 @@
 
 			<div class="w-size14 p-t-30 respon5">
 				<h4 class="product-detail-name m-text16 p-b-13">
-					Boxy T-Shirt with Roll Sleeve Detail
+					<%= detail[0].name %>
 				</h4>
 
 				<span class="m-text17">
-					$22
+					$<%= detail[0].price %>
 				</span>
 
 				<p class="s-text8 p-t-10">
-					Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-				</p>
+          <%= detail[0].about %>
+        </p>
 
 				<!--  -->
 				<div class="p-t-33 p-b-60">
