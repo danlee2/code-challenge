@@ -56,8 +56,9 @@
 						<!--  -->
 						<h4 class="m-text14 p-b-32">
 							Filters
-						</h4>
-
+            </h4>
+            
+            <!-- NOTE THAT THE ONLY FILTER THAT CAN WORK HERE IS THE PRICE FILTER BECAUSE THERE IS NO ATTRIBUTE FOR COLOR UNLESS I AM COMPLETELY MISSING IT -->
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
 								Price
@@ -69,10 +70,14 @@
 
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
-									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
-									</button>
+                  <form action="/" method="post">
+                    <!-- Button -->
+                    <button type ="submit" class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+                      Filter
+                    </button>
+                    <input hidden name="new_lower_value" id="lower" value="" />
+                    <input hidden name="new_upper_value" id="upper" value="" />
+                  </form>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
@@ -161,7 +166,7 @@
 						</div>
 
 						<span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
+							Showing <%= products.length %> results
 						</span>
 					</div>
 
@@ -215,6 +220,18 @@
 		</div>
 	</section>
 </div>
+
+<script>
+  // init the form inputs with the starting lower and upper bound values
+  var lower = $('#value-lower').val(); $('#lower').val() = lower;
+  var upper = $('#value-upper').val(); $('#upper').val() = upper;
+
+  var slider = document.getElementById("filter-bar");
+  slider.onchange = function(event){
+    lower = $('#value-lower').val(); $('#lower').val() = lower;
+    upper = $('#value-upper').val(); $('#upper').val() = upper;
+  }
+</script>
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/public/vendor/jquery/jquery-3.2.1.min.js"></script>

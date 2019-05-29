@@ -1,5 +1,9 @@
 # basic instructions
-to run app: `node server.js`
+`npm start` ... bruh that's it? slight work.
+
+# core technology stack
+Express, Axios, EJS.
+
 # code-challenge
 Blank HTML store template for code challenge
 

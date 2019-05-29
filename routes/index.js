@@ -26,7 +26,26 @@ module.exports = function(app) {
     })
     .catch(function () { res.render("product-detail", { detail: req.flash("error") }); })
   });
-}
+  // weird thing (even in Postman) is that MORE THAN ONE object is returned, although only ONE
+  // matches the param specified ... hence details[0] on the client side for now.
 
-// weird thing (even in Postman) is that MORE THAN ONE object is returned, although only ONE
-// matches the param specified ... SO DUMB ... hence details[0] on the client side.
+  // update lower and upper price values and filter products accordingly
+  // getMany endpoint - using simple GET HTTP request 
+  app.post('/', function(req, res, next) {
+    axios.get('https://next.json-generator.com/api/json/get/EkzBIUWNL')
+    .then(response => {
+      if (response.data) {
+        filteredData = [];
+        for (i = 0; i < response.data.length; i++) {
+          if (response.data[i].price <= req.body.new_upper_value 
+            && response.data[i].price >= req.body.new_lower_value) {
+              filteredData.append(response.data[i]);
+            }
+        }
+        res.render('product', {products:filteredData});
+      }
+    })
+    .catch(function () { res.render("product", { products: req.flash("error") }); })
+  });
+
+}
