@@ -113,12 +113,13 @@ module.exports = function(app) {
     axios.get('https://next.json-generator.com/api/json/get/EkzBIUWNL')
     .then(response => {
       if (response.data) {
-        console.log("filter lower: ",req.body.new_lower_value);
-        console.log("filter upper: ",req.body.new_upper_value);
+        console.log("search regex: ",req.body.search_regex);
 
         var filteredData = [];
         for (i = 0; i < response.data.length; i++) {
-          if (response.data[i].price >= req.body.new_lower_value && response.data[i].price <= req.body.new_upper_value) { 
+          var str = response.data[i].name;
+          var re = new RegExp(req.body.search_regex, 'g');
+          if (str.match(re)) { 
             filteredData.push(response.data[i]); 
           }
         }
