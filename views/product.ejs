@@ -58,7 +58,6 @@
 							Filters
             </h4>
             
-            <!-- NOTE THAT THE ONLY "FILTER" THAT CAN WORK HERE IS THE PRICE FILTER BECAUSE THERE IS NO ATTRIBUTE FOR COLOR UNLESS I AM COMPLETELY MISSING IT -->
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
 								Price
@@ -145,27 +144,30 @@
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Default Sorting</option>
+							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10" id="dropDownSelect1">
+								<select class="selection-1" name="sorting" id="optionSelect-1">
+									<option disabled selected>Default Sorting</option>
 									<option>Popularity</option>
 									<option>Price: low to high</option>
 									<option>Price: high to low</option>
 								</select>
 							</div>
 
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Price</option>
+							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10" id="dropDownSelect2">
+								<select class="selection-2" name="sorting" id="optionSelect-2">
+									<option disabled selected>Price</option>
 									<option>$0.00 - $50.00</option>
 									<option>$50.00 - $100.00</option>
 									<option>$100.00 - $150.00</option>
 									<option>$150.00 - $200.00</option>
 									<option>$200.00+</option>
-
 								</select>
 							</div>
 						</div>
+
+            <form action="/sortResults" name="sort_results" id="sortResults" method="post">
+              <input hidden value="" name="submit_select" id="submitSelect" />
+            </form>
 
 						<span class="s-text8 p-t-5 p-b-5">
 							Showing <%= products.length %> results
@@ -234,16 +236,28 @@
 	<script type="text/javascript" src="/public/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/public/vendor/select2/select2.min.js"></script>
-	<script type="text/javascript">
+  <script type="text/javascript"> // https://select2.org/dropdown
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
+      dropdownParent: $('#dropDownSelect1'),
 		});
 
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect2')
-		});
+      dropdownParent: $('#dropDownSelect2'),
+    });
+
+    // thinking behind my design here is that whenever an option in dropdown changes (since placeholder is selected to start and disabled), it will auto-submit a form with filtered results
+    $( "#optionSelect-1" ).change(function() {
+      var newSelect = $('#optionSelect-1').find(":selected").text();
+      $("#submitSelect").val(newSelect);
+      $("#sortResults").submit();
+    });
+    $( "#optionSelect-2" ).change(function() {
+      var newSelect = $('#optionSelect-2').find(":selected").text();
+      $("#submitSelect").val(newSelect);
+      $("#sortResults").submit();
+    });
 	</script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/public/vendor/daterangepicker/moment.min.js"></script>
@@ -311,6 +325,7 @@
   </script>
 
   <script>
+    // JS for search filter
     $(document).ready(function() {
       var currValue;
       $( "#searchProduct" )
