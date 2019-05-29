@@ -223,18 +223,6 @@
 	</section>
 </div>
 
-<script>
-  // init the form inputs with the starting lower and upper bound values
-  var lower = $('#value-lower').val(); $('#lower').val() = lower;
-  var upper = $('#value-upper').val(); $('#upper').val() = upper;
-
-  var slider = document.getElementById("filter-bar");
-  slider.onchange = function(event){
-    lower = $('#value-lower').val(); $('#lower').val() = lower;
-    upper = $('#value-upper').val(); $('#upper').val() = upper;
-  }
-</script>
-
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/public/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -300,9 +288,24 @@
 	    document.getElementById('value-upper')
 	    ];
 
+      // https://refreshless.com/nouislider/slider-read-write/
+      // init the form inputs with the starting lower and upper bound values
+      var boundCoords = filterBar.noUiSlider.get();
+      console.log("value-lower: ",boundCoords[0]);
+      $('#lower').val(boundCoords[0]);
+      console.log("value-upper: ",boundCoords[1]); 
+      $('#upper').val(boundCoords[1]); 
+
 	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
-	    });
+        skipValues[handle].innerHTML = Math.round(values[handle]) ;
+
+        console.log("price filter has been updated");
+        boundCoords = filterBar.noUiSlider.get();
+        console.log("new value-lower: ",boundCoords[0]);
+        $('#lower').val(boundCoords[0]); 
+        console.log("new value-upper: ",boundCoords[1]);
+        $('#upper').val(boundCoords[1]); 
+      });
   </script>
 <!--===============================================================================================-->
 	<script src="/public/js/main.js"></script>

@@ -1,4 +1,4 @@
-const axios = require ("axios");
+const axios = require ("axios"); // https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index
 
 module.exports = function(app) {
   // getMany endpoint - using simple GET HTTP request 
@@ -26,8 +26,8 @@ module.exports = function(app) {
     })
     .catch(function () { res.render("product-detail", { detail: req.flash("error") }); })
   });
-  // weird thing (even in Postman) is that MORE THAN ONE object is returned, although only ONE
-  // matches the param specified ... hence details[0] on the client side for now.
+  // weird thing w/ the above endpoint (even in Postman) is that MORE THAN ONE object is returned, although only ONE object
+  // matches the param specified in the Request ... hence details[0] on the client side for now.
 
   // update lower and upper price values and filter products accordingly
   // getMany endpoint - using simple GET HTTP request 
@@ -35,7 +35,7 @@ module.exports = function(app) {
     axios.get('https://next.json-generator.com/api/json/get/EkzBIUWNL')
     .then(response => {
       if (response.data) {
-        filteredData = [];
+        var filteredData = [];
         for (i = 0; i < response.data.length; i++) {
           if (response.data[i].price <= req.body.new_upper_value 
             && response.data[i].price >= req.body.new_lower_value) {
