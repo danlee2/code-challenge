@@ -1,4 +1,6 @@
 # basic instructions
+`npm install`
+
 `npm start` ... bruh that's it? slight work.
 
 # core technology stack
