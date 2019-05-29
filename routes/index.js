@@ -9,7 +9,24 @@ module.exports = function(app) {
         res.render('product', {products:response.data});
       }
     })
-    .catch(function () { res.render("product", { products: req.flash("error") }); })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
+    });  
   });
 
   // getSingle request - using simple POST HTTP request
@@ -24,7 +41,24 @@ module.exports = function(app) {
         res.render('product-detail', {detail:response.data});
       }
     })
-    .catch(function () { res.render("product-detail", { detail: req.flash("error") }); })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
+    });  
   });
   // weird thing w/ the above endpoint (even in Postman) is that MORE THAN ONE object is returned, although only ONE object
   // matches the param specified in the Request ... hence details[0] on the client side for now.
@@ -35,17 +69,36 @@ module.exports = function(app) {
     axios.get('https://next.json-generator.com/api/json/get/EkzBIUWNL')
     .then(response => {
       if (response.data) {
+        console.log("filter lower: ",req.body.new_lower_value);
+        console.log("filter upper: ",req.body.new_upper_value);
+
         var filteredData = [];
         for (i = 0; i < response.data.length; i++) {
-          if (response.data[i].price <= req.body.new_upper_value 
-            && response.data[i].price >= req.body.new_lower_value) {
-              filteredData.append(response.data[i]);
-            }
+          if (response.data[i].price >= req.body.new_lower_value && response.data[i].price <= req.body.new_upper_value) { 
+            filteredData.push(response.data[i]); 
+          }
         }
         res.render('product', {products:filteredData});
       }
     })
-    .catch(function () { res.render("product", { products: req.flash("error") }); })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
+    });  
   });
 
 }
